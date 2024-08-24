@@ -40,7 +40,7 @@ Generate output:
 
 bashCopycurl -o ./part-1-output http://localhost:9393/raw
 
-Generate logs:
+**Generate logs:**
 
 bashCopydocker logs container_name > & part-1-logs
 
@@ -110,7 +110,7 @@ yamlCopyglobal:
 scrape_configs:
   - job_name: 'csvserver'
     static_configs:
-      - targets: ['csvserver:9300']
+      - targets: 'csvserver:9300'
 
 **Start services:**
 
