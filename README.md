@@ -1,12 +1,14 @@
 # csvserver-assignment
 **Part I:**
 **bash**
-Copydocker run -d infracloudio/csvserver:latest
+
+docker run -d infracloudio/csvserver:latest
 docker ps -a
 
 Check logs if it's failing:
 
-bashCopydocker logs container_id
+**bash**
+docker logs container_id
 
 **Create gencsv.sh:**
 
@@ -19,22 +21,26 @@ done
 
 Make it executable and run:
 
-bashCopychmod +x gencsv.sh
+**bash**
+chmod +x gencsv.sh
 ./gencsv.sh 2 8
 
 Run container with inputFile:
 
-bashCopydocker run -d -v $(pwd)/inputFile:/csvserver/inputdata infracloudio/csvserver:latest
+**bash**
+docker run -d -v $(pwd)/inputFile:/csvserver/inputdata infracloudio/csvserver:latest
 
 Access shell and find port:
 
-bashCopydocker exec -it container_id /bin/bash
+**bash**
+docker exec -it container_id /bin/bash
 netstat -tuln
 Note the port, then exit and stop the container.
 
 Run with correct port and environment variable:
 
-bashCopydocker run -d -p 9393:9300 -v $(pwd)/inputFile:/csvserver/inputdata -e CSVSERVER_BORDER=Orange infracloudio/csvserver:latest
+**bash**
+docker run -d -p 9393:9300 -v $(pwd)/inputFile:/csvserver/inputdata -e CSVSERVER_BORDER=Orange infracloudio/csvserver:latest
 
 Create README.md with all commands executed.
 Save the last docker run command to part-1-cmd file.
@@ -44,7 +50,8 @@ bashCopycurl -o ./part-1-output http://localhost:9393/raw
 
 **Generate logs:**
 
-bashCopydocker logs container_name > & part-1-logs
+**bash**
+docker logs container_name > & part-1-logs
 
 Commit and push changes to GitHub.
 
@@ -52,7 +59,8 @@ Commit and push changes to GitHub.
 
 Stop and remove all containers:
 
-bashCopydocker stop $(docker ps -aq)
+**bash**
+docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
 
 Create docker-compose.yaml:
@@ -70,11 +78,12 @@ services:
 
 **Create csvserver.env:**
 
-CopyCSVSERVER_BORDER=Orange
+CSVSERVER_BORDER=Orange
 
 Test with:
 
-bashCopydocker-compose up -d
+bash
+docker-compose up -d
 
 Commit and push changes.
 
@@ -83,7 +92,7 @@ Commit and push changes.
 Stop containers:
 
 **bash**
-Copydocker-compose down
+docker-compose down
 
 Update docker-compose.yaml:
 
@@ -117,9 +126,10 @@ scrape_configs:
 
 **Start services:**
 
-bashCopydocker-compose up -d
+**bash**
+docker-compose up -d
 
-Verify Prometheus at http://localhost:9090
-Check csvserver_records metric in Prometheus.
+ Prometheus at http://localhost:9090
+
 
 
