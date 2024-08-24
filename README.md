@@ -1,7 +1,7 @@
 # csvserver-assignment
+
 **Part I:**
 **bash**
-
 docker run -d infracloudio/csvserver:latest
 docker ps -a
 
@@ -12,12 +12,15 @@ docker logs container_id
 
 **Create gencsv.sh:**
 
-**bashCopy#!/bin/bash**
+****bash**
+
+**#!/bin/bash****
 start=$1
 end=$2
 for i in $(seq $start $end); do
     echo "$i, $((RANDOM % 1000))" >> inputFile
 done
+
 
 Make it executable and run:
 
@@ -63,7 +66,7 @@ Stop and remove all containers:
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
 
-Create docker-compose.yaml:
+**Create docker-compose.yaml:**
 
 yamlCopyversion: '3'
 services:
