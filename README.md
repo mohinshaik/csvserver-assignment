@@ -1,14 +1,16 @@
 # csvserver-assignment
 **Part I:**
-docker run -d infracloudio/csvserver:latest
+**bash**
+Copydocker run -d infracloudio/csvserver:latest
 docker ps -a
+
 Check logs if it's failing:
 
-bashCopydocker logs <container_id>
+bashCopydocker logs container_id
 
 **Create gencsv.sh:**
 
-bashCopy#!/bin/bash
+**bashCopy#!/bin/bash**
 start=$1
 end=$2
 for i in $(seq $start $end); do
@@ -26,7 +28,7 @@ bashCopydocker run -d -v $(pwd)/inputFile:/csvserver/inputdata infracloudio/csvs
 
 Access shell and find port:
 
-bashCopydocker exec -it <container_id> /bin/bash
+bashCopydocker exec -it container_id /bin/bash
 netstat -tuln
 Note the port, then exit and stop the container.
 
@@ -80,7 +82,8 @@ Commit and push changes.
 
 Stop containers:
 
-bashCopydocker-compose down
+**bash**
+Copydocker-compose down
 
 Update docker-compose.yaml:
 
